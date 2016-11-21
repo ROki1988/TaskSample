@@ -30,7 +30,7 @@ begin
   Current := TTask.Run(
     procedure
     begin
-      Sleep(10000);
+      Sleep(4000);
       TThread.Synchronize(nil,
         procedure
         begin
@@ -40,7 +40,7 @@ begin
     end
   );
 
-  while not TTask.WaitForAll([Current], 1) do
+  while not Current.Wait(10) do
   begin
     Application.ProcessMessages();
   end;
